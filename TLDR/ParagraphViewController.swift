@@ -19,6 +19,7 @@ class ParagraphViewController: UIViewController
     
     func updateUI(content :String) {
 //        print(content)
+        print(getArticle(content))
         dispatch_async(dispatch_get_main_queue(), { //UI stuff must be run on main thread, must be sequencial
             self.paragraph.text = self.getArticle(content)
         });
@@ -48,7 +49,6 @@ class ParagraphViewController: UIViewController
                 {(myData, response, error) in
                     if (error == nil) {
                         let myWebString = NSString(data: myData!, encoding: NSUTF8StringEncoding)
-//                        print("calling update")
                         self.updateUI(myWebString as! String)
                     }
                 }
@@ -98,12 +98,7 @@ class ParagraphViewController: UIViewController
             }else if inBlock {
                 if (cur == endBlockChar) {
                     idx = advanceToEndOfBlock(webString, idx: idx).endIdx
-//                    print("return extract at \(webString[idx])\n")
-                    if (!sentence.isEmpty) {
-                        sentence += "\n"
-                        print("adding empty line")
-                    }
-                    print("partial sentence is: \(sentence)")
+//                    print("partial sentence is: \(sentence)")
                     return (sentence, idx)
                 } else {
                     let blockInfo = advanceToEndOfBlock(webString, idx: idx)
@@ -174,8 +169,12 @@ class ParagraphViewController: UIViewController
                 idx = advanceToEndOfBlock(webString, idx: idx).endIdx
                 if (isUsefulBlock(currentChar, second: nextChar)) {
                     let info = extractSentenceFromBlock(webString, idx: idx)
-                    print("sentence is: \(info.sentence)")
-                    article += info.sentence
+//                    print("sentence is: \(info.sentence)")
+                    if containsLetters(info.sentence) {
+                        article += info.sentence + "\n"
+                    } else {
+                        article += "\n"
+                    }
                     idx = info.idx
                 }
                 inBlock = false

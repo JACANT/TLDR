@@ -160,7 +160,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Article" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZY2-Zd-j8V">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZY2-Zd-j8V">
                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="50"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -169,9 +169,9 @@
                         </subviews>
                         <color key="backgroundColor" red="0.85909915519560509" green="0.97593344810585614" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="YU5-eg-gh0" firstAttribute="top" secondItem="ZY2-Zd-j8V" secondAttribute="bottom" constant="10" id="1Bj-zR-e3R"/>
+                            <constraint firstItem="YU5-eg-gh0" firstAttribute="top" secondItem="ZY2-Zd-j8V" secondAttribute="bottom" constant="30" id="1Bj-zR-e3R"/>
                             <constraint firstItem="YU5-eg-gh0" firstAttribute="leading" secondItem="4aO-48-emO" secondAttribute="leadingMargin" constant="10" id="9gP-DG-bPD"/>
-                            <constraint firstItem="ZY2-Zd-j8V" firstAttribute="top" secondItem="0ZE-Jh-YKc" secondAttribute="bottom" constant="10" id="GP9-wx-KCd"/>
+                            <constraint firstItem="ZY2-Zd-j8V" firstAttribute="top" secondItem="0ZE-Jh-YKc" secondAttribute="bottom" constant="30" id="GP9-wx-KCd"/>
                             <constraint firstAttribute="trailingMargin" secondItem="YU5-eg-gh0" secondAttribute="trailing" constant="10" id="SQj-Qk-Tnx"/>
                             <constraint firstAttribute="centerX" secondItem="ZY2-Zd-j8V" secondAttribute="centerX" id="d0m-MB-nJZ"/>
                             <constraint firstItem="4V1-QT-w64" firstAttribute="top" secondItem="YU5-eg-gh0" secondAttribute="bottom" constant="20" id="rQ3-Hg-YmY"/>
