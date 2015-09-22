@@ -15,7 +15,7 @@ class ViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let pvc = segue.destinationViewController as? ParagraphViewController {
             if segue.identifier == "read article" {
-                pvc.url = webUrl.text
+                pvc.url = webUrl.text!
             }
         }
     }

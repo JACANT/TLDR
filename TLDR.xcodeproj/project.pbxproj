@@ -14,7 +14,6 @@
 		E265F3C81B96342900E79899 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E265F3C61B96342900E79899 /* LaunchScreen.xib */; };
 		E265F3D41B96342900E79899 /* TLDRTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E265F3D31B96342900E79899 /* TLDRTests.swift */; };
 		E265F3E21B96653E00E79899 /* ParagraphViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E265F3E11B96653E00E79899 /* ParagraphViewController.swift */; };
-		E265F4041B9679B900E79899 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = E265F4031B9679B900E79899 /* File.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,7 +38,6 @@
 		E265F3D21B96342900E79899 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E265F3D31B96342900E79899 /* TLDRTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TLDRTests.swift; sourceTree = "<group>"; };
 		E265F3E11B96653E00E79899 /* ParagraphViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParagraphViewController.swift; sourceTree = "<group>"; };
-		E265F4031B9679B900E79899 /* File.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,7 +81,6 @@
 			children = (
 				E265F3E11B96653E00E79899 /* ParagraphViewController.swift */,
 				E265F3BF1B96342900E79899 /* ViewController.swift */,
-				E265F4031B9679B900E79899 /* File.swift */,
 				E265F3C11B96342900E79899 /* Main.storyboard */,
 				E265F3BB1B96342900E79899 /* Supporting Files */,
 			);
@@ -162,7 +159,9 @@
 		E265F3B01B96342900E79899 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0640;
+				LastSwiftMigration = 0700;
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Anthony Yu";
 				TargetAttributes = {
 					E265F3B71B96342900E79899 = {
@@ -219,7 +218,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E265F3C01B96342900E79899 /* ViewController.swift in Sources */,
-				E265F4041B9679B900E79899 /* File.swift in Sources */,
 				E265F3E21B96653E00E79899 /* ParagraphViewController.swift in Sources */,
 				E265F3BE1B96342900E79899 /* AppDelegate.swift in Sources */,
 			);
@@ -284,6 +282,8 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				EXCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "*.nib *.lproj *.framework *.gch *.xcode* *.xcassets (*) .DS_Store CVS .svn .git .hg *.pbproj *.pbxproj";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -330,6 +330,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				EXCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "*.nib *.lproj *.framework *.gch *.xcode* *.xcassets (*) .DS_Store CVS .svn .git .hg *.pbproj *.pbxproj";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -352,6 +353,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = TLDR/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "test.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -362,6 +364,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = TLDR/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "test.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -380,6 +383,7 @@
 				);
 				INFOPLIST_FILE = TLDRTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "test.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TLDR.app/TLDR";
 			};
@@ -395,6 +399,7 @@
 				);
 				INFOPLIST_FILE = TLDRTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "test.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TLDR.app/TLDR";
 			};
@@ -419,6 +424,7 @@
 				E265F3D91B96342900E79899 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E265F3DA1B96342900E79899 /* Build configuration list for PBXNativeTarget "TLDRTests" */ = {
 			isa = XCConfigurationList;
@@ -427,6 +433,7 @@
 				E265F3DC1B96342900E79899 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
