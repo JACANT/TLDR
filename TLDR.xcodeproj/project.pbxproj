@@ -14,6 +14,7 @@
 		E265F3C81B96342900E79899 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E265F3C61B96342900E79899 /* LaunchScreen.xib */; };
 		E265F3D41B96342900E79899 /* TLDRTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E265F3D31B96342900E79899 /* TLDRTests.swift */; };
 		E265F3E21B96653E00E79899 /* ParagraphViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E265F3E11B96653E00E79899 /* ParagraphViewController.swift */; };
+		E2D6E6F31BB5EEBF006C1939 /* Button.png in Resources */ = {isa = PBXBuildFile; fileRef = E2D6E6F21BB5EEBF006C1939 /* Button.png */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,7 @@
 		E265F3D21B96342900E79899 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E265F3D31B96342900E79899 /* TLDRTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TLDRTests.swift; sourceTree = "<group>"; };
 		E265F3E11B96653E00E79899 /* ParagraphViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParagraphViewController.swift; sourceTree = "<group>"; };
+		E2D6E6F21BB5EEBF006C1939 /* Button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Button.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +84,7 @@
 				E265F3E11B96653E00E79899 /* ParagraphViewController.swift */,
 				E265F3BF1B96342900E79899 /* ViewController.swift */,
 				E265F3C11B96342900E79899 /* Main.storyboard */,
+				E2D6E6F21BB5EEBF006C1939 /* Button.png */,
 				E265F3BB1B96342900E79899 /* Supporting Files */,
 			);
 			path = TLDR;
@@ -198,6 +201,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E265F3C31B96342900E79899 /* Main.storyboard in Resources */,
+				E2D6E6F31BB5EEBF006C1939 /* Button.png in Resources */,
 				E265F3C81B96342900E79899 /* LaunchScreen.xib in Resources */,
 				E265F3C51B96342900E79899 /* Images.xcassets in Resources */,
 			);
