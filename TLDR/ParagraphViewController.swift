@@ -16,12 +16,55 @@ class ParagraphViewController: UIViewController
         didSet { paragraph.setNeedsDisplay() }
     }
     
+    //animation of waiting..
+    var ticker: NSTimer? = nil
+    var count: Float = 0.0
+    let space:String = " "
+    let waiting = "waiting..."
+    let length = 9
+    
+    override func viewDidAppear(animated: Bool) {
+        if (url.isEmpty) {
+            count = 18.0
+            ticker = NSTimer.scheduledTimerWithTimeInterval(0.15, target: self, selector:"animateWait", userInfo: nil, repeats: true)
+            Header.text = "         "
+        }
+    }
+    
+    func addSpace(var str: String, number: Int) -> String {
+        if (number > 0) {
+            for _ in 1...number {
+                str += space
+            }
+        }
+        return str
+    }
+    
+    func animateWait() {
+        if (count == 0) {
+            count = 18.0
+        }
+        let numberOfSpace = Int(ceil(abs(count-9.5))-1)
+        var output = ""
+        if count > 9.5 {
+            output = addSpace(output, number: numberOfSpace)
+            output += waiting
+        } else {
+            output += waiting.substringFromIndex(waiting.startIndex.advancedBy(numberOfSpace+1))
+            output = addSpace(output, number: numberOfSpace)
+        }
+        output = output.substringToIndex(output.startIndex.advancedBy(8)) + "\u{200c}"
+        Header.text = output
+        count--
+    }
+    
+    
+    //url of web to be retrieve
     var url = ""
     
     // setup for synthetizer
     let synth = AVSpeechSynthesizer()
     var myUtterance = AVSpeechUtterance(string: "")
-    
     var cursorInfo = UITextRange()
     var currentSpeechStart = UITextPosition()
 
@@ -47,13 +90,15 @@ class ParagraphViewController: UIViewController
         }
     }
     
+    /*
+    call getAritcle, then set paragraph to the return value from get Article
+    */
     func updateUI(content :String) {
-//        print(content)
-//        print(getArticle(content))
-        Header.text = "Article"
-        dispatch_async(dispatch_get_main_queue(), { //UI stuff must be run on main thread, must be sequencial
+        //UI stuff must be run on main thread, must be sequencial
+        dispatch_async(dispatch_get_main_queue(), {
             self.paragraph.text = self.getArticle(content)
         });
+        Header.text = "Article"
     }
     
     override func viewDidLoad() {
@@ -77,7 +122,9 @@ class ParagraphViewController: UIViewController
         loadArticle()
     }
     
-    
+    /*
+    get html string from url, then call updateUI
+    */
     func loadArticle() {
         let web = NSURL(string: url)
         if web != nil {
@@ -92,15 +139,17 @@ class ParagraphViewController: UIViewController
         }
     }
     
-/*
-    return true if sentence contains NSCharacterSet
-*/
     
+    /*
+    return true if sentence contains NSCharacterSet
+    */
     func containsLetters(sentence: String) -> Bool {
         let letters = NSCharacterSet.letterCharacterSet()
         return sentence.rangeOfCharacterFromSet(letters) != nil
     }
-/*
+    
+    
+    /*
     parse out all sentences within one html block
     example:
         <p>
@@ -117,9 +166,8 @@ class ParagraphViewController: UIViewController
     
     returns: sentence: abcde fuck
              idx: idx of the last >
-*/
+    */
     func extractSentenceFromBlock(webString: String, var idx: String.Index) -> (sentence: String, idx: String.Index) {
-        print("inside extract at \(webString[idx])\n")
         var sentence = String()
         var cur: Character
         var inBlock = false
@@ -134,8 +182,6 @@ class ParagraphViewController: UIViewController
             }else if inBlock {
                 if (cur == endBlockChar) {
                     idx = advanceToEndOfBlock(webString, idx: idx).endIdx
-//                    print("partial sentence is: \(sentence)")
-                    print("return extract")
                     return (sentence, idx)
                 } else {
                     let blockInfo = advanceToEndOfBlock(webString, idx: idx)
@@ -157,14 +203,13 @@ class ParagraphViewController: UIViewController
     }
     
     
-/*
- * .... <x........> .....
- *       ↑        ↑
- *     idxIn   idxOut
- * selfContained is true if the block looks like <...../>, false otherwise
-*/
+    /*
+    * .... <x........> .....
+    *       ↑        ↑
+    *     idxIn   idxOut
+    * selfContained is true if the block looks like <...../>, false otherwise
+    */
     func advanceToEndOfBlock(webString: String, var idx: String.Index) -> (endIdx: String.Index, selfContained: Bool) {
-//        print("inside advanceToEndOfBlock at \(webString[idx])\n")
         var selfContained = false
         if (webString[idx] == "!") {
             selfContained = true
@@ -175,14 +220,14 @@ class ParagraphViewController: UIViewController
         if (webString[idx.predecessor()] == "/") {
             selfContained = true
         }
-//        print("return advanceToEndOfBlock at \(webString[idx.successor()])")
         return (idx, selfContained)
     }
     
-/*
+    
+    /*
     return trur if block if useful.
     Usefullness is defined as blocks that might potentially contain parts of article that needs to be retreived
-*/
+    */
     func accessBlock(first: Character, second: Character) -> (useful: Bool, trouble: Bool) {
         let PotentiallyUsefulBlocks = ["p>", "p ", "h1", "h2", "h3", "ul"]
         let PotentiallyTroubleBlocks = ["sc"]
@@ -191,15 +236,14 @@ class ParagraphViewController: UIViewController
     }
     
     
-/*
+    /*
     <..>........</..> ...
        ↑            ↑
      idxIn       idxOut
     
     skip the whole block and anything in between
-*/
+    */
     func skipBlock(webString: String, var idx: String.Index) -> String.Index {
-//        print("inside skipBlock")
         var curChar: Character
         var nextChar: Character = "s"
         while (nextChar != "/") {
@@ -212,10 +256,12 @@ class ParagraphViewController: UIViewController
         return advanceToEndOfBlock(webString, idx: idx).endIdx
 
     }
-/*
+    
+    
+    /*
     takes in a html string as String
     returns the parsed article
-*/
+    */
     func getArticle(webString: String) -> String {
         var article = String()
         var idx = webString.startIndex
@@ -231,7 +277,6 @@ class ParagraphViewController: UIViewController
                 let block = accessBlock(currentChar, second: nextChar)
                 if (block.useful) {
                     let info = extractSentenceFromBlock(webString, idx: idx)
-                    print("sentence is: \(info.sentence)")
                     if containsLetters(info.sentence) {
                         article += info.sentence + "\n"
                     } else {
